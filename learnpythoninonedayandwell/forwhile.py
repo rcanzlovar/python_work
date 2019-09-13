@@ -21,3 +21,7 @@ if (3 == 3):
 iterthing = [1, 2, 3, 4, 5]
 for a in iterthing:
 	print (str(a) + " thing")
+
+myDict = {'Bob':57, 'Ran':29}
+for i,j in myDict:
+    print ("%s is %d\n" % (i,j))
