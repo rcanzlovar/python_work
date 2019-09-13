@@ -40,8 +40,8 @@ if ('for' == 'in'):
     for i in  range(3, 10+1):
         print (i)
 
-while loops
-if ('while'=='')
+# while loops
+if ('while'==''):
     # while loop
     counter = 5
     while counter > 0:
@@ -64,3 +64,5 @@ try:
     pass
 except Exception as e:
     raise e
+
+
