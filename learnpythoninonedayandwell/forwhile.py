@@ -49,3 +49,10 @@ while counter > 0:
     print (counter, "\n")
 
 # break to break out of a while loop early
+j = 0
+for i in range(1,10):
+    j += 2
+    print ('i = ',i,' j=',j)
+    if j ==6:
+        continue
+    print ("skip me")
