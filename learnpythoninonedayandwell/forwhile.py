@@ -42,3 +42,10 @@ if ('for' == 'in'):
 
 
 # while loop
+counter = 5
+while counter > 0:
+    print (counter)
+    counter -= 1
+    print (counter, "\n")
+
+# break to break out of a while loop early
