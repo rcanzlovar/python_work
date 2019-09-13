@@ -1,0 +1,104 @@
+
+
+[38;5;246m####################################################[39m
+[38;5;246m# 7. Advanced[39m
+[38;5;246m####################################################[39m
+
+[38;5;246m# Generators[39m
+[38;5;246m# A generator "generates" values as they are requested instead of storing[39m
+[38;5;246m# everything up front[39m
+
+[38;5;246m# The following method (*NOT* a generator) will double all values and store it[39m
+[38;5;246m# in `double_arr`. For large size of iterables, that might get huge![39m
+[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68mdouble_numbers[39m[38;5;252m([39m[38;5;252miterable[39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m    [39m[38;5;252mdouble_arr[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m][39m
+[38;5;252m    [39m[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mi[39m[38;5;252m [39m[38;5;70;01min[39;00m[38;5;252m [39m[38;5;252miterable[39m[38;5;252m:[39m
+[38;5;252m        [39m[38;5;252mdouble_arr[39m[38;5;252m.[39m[38;5;252mappend[39m[38;5;252m([39m[38;5;252mi[39m[38;5;252m [39m[38;5;252m+[39m[38;5;252m [39m[38;5;252mi[39m[38;5;252m)[39m
+[38;5;252m    [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;252mdouble_arr[39m
+
+
+[38;5;246m# Running the following would mean we'll double all values first and return all[39m
+[38;5;246m# of them back to be checked by our condition[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mvalue[39m[38;5;252m [39m[38;5;70;01min[39;00m[38;5;252m [39m[38;5;252mdouble_numbers[39m[38;5;252m([39m[38;5;31mrange[39m[38;5;252m([39m[38;5;67m1000000[39m[38;5;252m)[39m[38;5;252m)[39m[38;5;252m:[39m[38;5;252m  [39m[38;5;246m# `test_non_generator`[39m
+[38;5;252m    [39m[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;252mvalue[39m
+[38;5;252m    [39m[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252mvalue[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;67m5[39m[38;5;252m:[39m
+[38;5;252m        [39m[38;5;70;01mbreak[39;00m
+
+
+[38;5;246m# We could instead use a generator to "generate" the doubled value as the item[39m
+[38;5;246m# is being requested[39m
+[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68mdouble_numbers_generator[39m[38;5;252m([39m[38;5;252miterable[39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m    [39m[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mi[39m[38;5;252m [39m[38;5;70;01min[39;00m[38;5;252m [39m[38;5;252miterable[39m[38;5;252m:[39m
+[38;5;252m        [39m[38;5;70;01myield[39;00m[38;5;252m [39m[38;5;252mi[39m[38;5;252m [39m[38;5;252m+[39m[38;5;252m [39m[38;5;252mi[39m
+
+
+[38;5;246m# Running the same code as before, but with a generator, now allows us to iterate[39m
+[38;5;246m# over the values and doubling them one by one as they are being consumed by[39m
+[38;5;246m# our logic. Hence as soon as we see a value > 5, we break out of the[39m
+[38;5;246m# loop and don't need to double most of the values sent in (MUCH FASTER!)[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mvalue[39m[38;5;252m [39m[38;5;70;01min[39;00m[38;5;252m [39m[38;5;252mdouble_numbers_generator[39m[38;5;252m([39m[38;5;31mxrange[39m[38;5;252m([39m[38;5;67m1000000[39m[38;5;252m)[39m[38;5;252m)[39m[38;5;252m:[39m[38;5;252m  [39m[38;5;246m# `test_generator`[39m
+[38;5;252m    [39m[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;252mvalue[39m
+[38;5;252m    [39m[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252mvalue[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;67m5[39m[38;5;252m:[39m
+[38;5;252m        [39m[38;5;70;01mbreak[39;00m
+
+[38;5;246m# BTW: did you notice the use of `range` in `test_non_generator` and `xrange` in `test_generator`?[39m
+[38;5;246m# Just as `double_numbers_generator` is the generator version of `double_numbers`[39m
+[38;5;246m# We have `xrange` as the generator version of `range`[39m
+[38;5;246m# `range` would return back and array with 1000000 values for us to use[39m
+[38;5;246m# `xrange` would generate 1000000 values for us as we request / iterate over those items[39m
+
+[38;5;246m# Just as you can create a list comprehension, you can create generator[39m
+[38;5;246m# comprehensions as well.[39m
+[38;5;252mvalues[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;252m([39m[38;5;252m-[39m[38;5;252mx[39m[38;5;252m [39m[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mx[39m[38;5;252m [39m[38;5;70;01min[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;67m1[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m3[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m4[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m5[39m[38;5;252m][39m[38;5;252m)[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mx[39m[38;5;252m [39m[38;5;70;01min[39;00m[38;5;252m [39m[38;5;252mvalues[39m[38;5;252m:[39m
+[38;5;252m    [39m[38;5;70;01mprint[39;00m[38;5;252m([39m[38;5;252mx[39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# prints -1 -2 -3 -4 -5 to console/terminal[39m
+
+[38;5;246m# You can also cast a generator comprehension directly to a list.[39m
+[38;5;252mvalues[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;252m([39m[38;5;252m-[39m[38;5;252mx[39m[38;5;252m [39m[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mx[39m[38;5;252m [39m[38;5;70;01min[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;67m1[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m3[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m4[39m[38;5;252m,[39m[38;5;252m [39m[38;5;67m5[39m[38;5;252m][39m[38;5;252m)[39m
+[38;5;252mgen_to_list[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;31mlist[39m[38;5;252m([39m[38;5;252mvalues[39m[38;5;252m)[39m
+[38;5;70;01mprint[39;00m[38;5;252m([39m[38;5;252mgen_to_list[39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# => [-1, -2, -3, -4, -5][39m
+
+[38;5;246m# Decorators[39m
+[38;5;246m# A decorator is a higher order function, which accepts and returns a function.[39m
+[38;5;246m# Simple usage example – add_apples decorator will add 'Apple' element into[39m
+[38;5;246m# fruits list returned by get_fruits target function.[39m
+[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68madd_apples[39m[38;5;252m([39m[38;5;252mfunc[39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m    [39m[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68mget_fruits[39m[38;5;252m([39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m        [39m[38;5;252mfruits[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;252mfunc[39m[38;5;252m([39m[38;5;252m)[39m
+[38;5;252m        [39m[38;5;252mfruits[39m[38;5;252m.[39m[38;5;252mappend[39m[38;5;252m([39m[38;5;214m'[39m[38;5;214mApple[39m[38;5;214m'[39m[38;5;252m)[39m
+[38;5;252m        [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;252mfruits[39m
+[38;5;252m    [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;252mget_fruits[39m
+
+[38;5;214m@add_apples[39m
+[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68mget_fruits[39m[38;5;252m([39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m    [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;214m'[39m[38;5;214mBanana[39m[38;5;214m'[39m[38;5;252m,[39m[38;5;252m [39m[38;5;214m'[39m[38;5;214mMango[39m[38;5;214m'[39m[38;5;252m,[39m[38;5;252m [39m[38;5;214m'[39m[38;5;214mOrange[39m[38;5;214m'[39m[38;5;252m][39m
+
+[38;5;246m# Prints out the list of fruits with 'Apple' element in it:[39m
+[38;5;246m# Banana, Mango, Orange, Apple[39m
+[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;214m'[39m[38;5;214m, [39m[38;5;214m'[39m[38;5;252m.[39m[38;5;252mjoin[39m[38;5;252m([39m[38;5;252mget_fruits[39m[38;5;252m([39m[38;5;252m)[39m[38;5;252m)[39m
+
+[38;5;246m# in this example beg wraps say[39m
+[38;5;246m# Beg will call say. If say_please is True then it will change the returned[39m
+[38;5;246m# message[39m
+[38;5;70;01mfrom[39;00m[38;5;252m [39m[38;5;68;04mfunctools[39;00m[38;5;252m [39m[38;5;70;01mimport[39;00m[38;5;252m [39m[38;5;252mwraps[39m
+
+
+[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68mbeg[39m[38;5;252m([39m[38;5;252mtarget_function[39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m    [39m[38;5;214m@wraps[39m[38;5;252m([39m[38;5;252mtarget_function[39m[38;5;252m)[39m
+[38;5;252m    [39m[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68mwrapper[39m[38;5;252m([39m[38;5;252m*[39m[38;5;252margs[39m[38;5;252m,[39m[38;5;252m [39m[38;5;252m*[39m[38;5;252m*[39m[38;5;252mkwargs[39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m        [39m[38;5;252mmsg[39m[38;5;252m,[39m[38;5;252m [39m[38;5;252msay_please[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;252mtarget_function[39m[38;5;252m([39m[38;5;252m*[39m[38;5;252margs[39m[38;5;252m,[39m[38;5;252m [39m[38;5;252m*[39m[38;5;252m*[39m[38;5;252mkwargs[39m[38;5;252m)[39m
+[38;5;252m        [39m[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252msay_please[39m[38;5;252m:[39m
+[38;5;252m            [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;214m"[39m[38;5;214m{} {}[39m[38;5;214m"[39m[38;5;252m.[39m[38;5;252mformat[39m[38;5;252m([39m[38;5;252mmsg[39m[38;5;252m,[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mPlease! I am poor :([39m[38;5;214m"[39m[38;5;252m)[39m
+[38;5;252m        [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;252mmsg[39m
+
+[38;5;252m    [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;252mwrapper[39m
+
+
+[38;5;214m@beg[39m
+[38;5;70;01mdef[39;00m[38;5;252m [39m[38;5;68msay[39m[38;5;252m([39m[38;5;252msay_please[39m[38;5;252m=[39m[38;5;31mFalse[39m[38;5;252m)[39m[38;5;252m:[39m
+[38;5;252m    [39m[38;5;252mmsg[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mCan you buy me a beer?[39m[38;5;214m"[39m
+[38;5;252m    [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;252mmsg[39m[38;5;252m,[39m[38;5;252m [39m[38;5;252msay_please[39m
+
+
+[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;252msay[39m[38;5;252m([39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# Can you buy me a beer?[39m
+[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;252msay[39m[38;5;252m([39m[38;5;252msay_please[39m[38;5;252m=[39m[38;5;31mTrue[39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# Can you buy me a beer? Please! I am poor :([39m

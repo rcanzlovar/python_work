@@ -1,0 +1,46 @@
+
+[38;5;246m####################################################[39m
+[38;5;246m# 6. Modules[39m
+[38;5;246m####################################################[39m
+
+[38;5;246m# You can import modules[39m
+[38;5;70;01mimport[39;00m[38;5;252m [39m[38;5;68;04mmath[39;00m
+
+[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;252mmath[39m[38;5;252m.[39m[38;5;252msqrt[39m[38;5;252m([39m[38;5;67m16[39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# => 4.0[39m
+
+[38;5;246m# You can get specific functions from a module[39m
+[38;5;70;01mfrom[39;00m[38;5;252m [39m[38;5;68;04mmath[39;00m[38;5;252m [39m[38;5;70;01mimport[39;00m[38;5;252m [39m[38;5;252mceil[39m[38;5;252m,[39m[38;5;252m [39m[38;5;252mfloor[39m
+
+[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;252mceil[39m[38;5;252m([39m[38;5;67m3.7[39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# => 4.0[39m
+[38;5;70;01mprint[39;00m[38;5;252m [39m[38;5;252mfloor[39m[38;5;252m([39m[38;5;67m3.7[39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# => 3.0[39m
+
+[38;5;246m# You can import all functions from a module.[39m
+[38;5;246m# Warning: this is not recommended[39m
+[38;5;70;01mfrom[39;00m[38;5;252m [39m[38;5;68;04mmath[39;00m[38;5;252m [39m[38;5;70;01mimport[39;00m[38;5;252m [39m[38;5;252m*[39m
+
+[38;5;246m# You can shorten module names[39m
+[38;5;70;01mimport[39;00m[38;5;252m [39m[38;5;68;04mmath[39;00m[38;5;252m [39m[38;5;70;01mas[39;00m[38;5;252m [39m[38;5;68;04mm[39;00m
+
+[38;5;252mmath[39m[38;5;252m.[39m[38;5;252msqrt[39m[38;5;252m([39m[38;5;67m16[39m[38;5;252m)[39m[38;5;252m [39m[38;5;252m==[39m[38;5;252m [39m[38;5;252mm[39m[38;5;252m.[39m[38;5;252msqrt[39m[38;5;252m([39m[38;5;67m16[39m[38;5;252m)[39m[38;5;252m  [39m[38;5;246m# => True[39m
+[38;5;246m# you can also test that the functions are equivalent[39m
+[38;5;70;01mfrom[39;00m[38;5;252m [39m[38;5;68;04mmath[39;00m[38;5;252m [39m[38;5;70;01mimport[39;00m[38;5;252m [39m[38;5;252msqrt[39m
+
+[38;5;252mmath[39m[38;5;252m.[39m[38;5;252msqrt[39m[38;5;252m [39m[38;5;252m==[39m[38;5;252m [39m[38;5;252mm[39m[38;5;252m.[39m[38;5;252msqrt[39m[38;5;252m [39m[38;5;252m==[39m[38;5;252m [39m[38;5;252msqrt[39m[38;5;252m  [39m[38;5;246m# => True[39m
+
+[38;5;246m# Python modules are just ordinary python files. You[39m
+[38;5;246m# can write your own, and import them. The name of the[39m
+[38;5;246m# module is the same as the name of the file.[39m
+
+[38;5;246m# You can find out which functions and attributes[39m
+[38;5;246m# defines a module.[39m
+[38;5;70;01mimport[39;00m[38;5;252m [39m[38;5;68;04mmath[39;00m
+
+[38;5;31mdir[39m[38;5;252m([39m[38;5;252mmath[39m[38;5;252m)[39m
+
+
+[38;5;246m# If you have a Python script named math.py in the same[39m
+[38;5;246m# folder as your current script, the file math.py will[39m
+[38;5;246m# be loaded instead of the built-in Python module.[39m
+[38;5;246m# This happens because the local folder has priority[39m
+[38;5;246m# over Python's built-in libraries.[39m
+
