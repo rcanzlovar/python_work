@@ -40,19 +40,27 @@ if ('for' == 'in'):
     for i in  range(3, 10+1):
         print (i)
 
+while loops
+if ('while'=='')
+    # while loop
+    counter = 5
+    while counter > 0:
+        print (counter)
+        counter -= 1
+        print (counter, "\n")
+    #
+    # break to break out of a while loop early
+    # continue to skip the rest of the loop for this iteration 
+    j = 0
+    for i in range(1,10):
+        j += 2
+        print ('i = ',i,' j=',j)
+        if j ==6:
+            continue
+        print ("skip me")
 
-# while loop
-counter = 5
-while counter > 0:
-    print (counter)
-    counter -= 1
-    print (counter, "\n")
-
-# break to break out of a while loop early
-j = 0
-for i in range(1,10):
-    j += 2
-    print ('i = ',i,' j=',j)
-    if j ==6:
-        continue
-    print ("skip me")
+# try/except templaate
+try:
+    pass
+except Exception as e:
+    raise e
