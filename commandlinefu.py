@@ -14,9 +14,6 @@ print "Command Line Search Tool"
 print "-" * 80
 
 
-
-
-
 def Banner(text):
     print "=" * 70
     print text
@@ -47,6 +44,7 @@ def sortByVotesToday():
 
 def sortByVotesWeek():
     Banner('Printing All commands the last week (Sort By Votes) ')
+    
     url = "http://www.commandlinefu.com/commands/browse/last-week/sort-by-votes/json"
     request = urllib2.Request(url)
     response = json.load(urllib2.urlopen(request))

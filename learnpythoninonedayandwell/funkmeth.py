@@ -18,6 +18,7 @@ def checkIfPrime(numToCheck):
 
 def myfunction(value):
     var = value**2
+    print ("var is ",var)
     if checkIfPrime(var+1):
         print ("prime")
         return ("prime")
@@ -28,5 +29,14 @@ def myfunction(value):
 print('x',myfunction(13))
 print('y',checkIfPrime(13))
 
+def addNumbers(*num):
+    sum = 0
+    for i in num:
+        sum = sum + i
+    print (sum)
+    return(sum)
+
+
+print (addNumbers(1, 2, 3, 5))
 # modules
 # methods
