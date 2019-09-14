@@ -2,11 +2,6 @@ import math
 
 
 def checkIfPrime(numToCheck):
-    if numToCheck == 2:
-        return True
-    if numToCheck == 3:
-        return True
-        
     # check all of them
     top = numToCheck
     # how about half -ish?
