@@ -61,8 +61,18 @@ if ('while'==''):
 
 # try/except templaate
 try:
-    pass
+#    uI1 = int(input("enter first number : "))
+    uI1 = int(input("enter first number : "))
+    uI2 = float(input("enter second number: "))
+    print ("the answer is %d" % (uI1 / uI2))
+    myFile = open("missing.txt",'r')
+except ValueError:
+    print ("Error you didn't enter a number")
+except ZeroDivisionError:   
+    print ("Error can't divide by zero ")
 except Exception as e:
-    raise e
+   print ("Unknown error: ", e)
+#    raise e
+
 
 
