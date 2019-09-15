@@ -31,3 +31,47 @@ class Staff:
             self._position = value
         else:
             print('Position is invalid. No changes made.')
+
+
+class ManagementStaff(Staff):
+    def __init__(self, pName, pPay, pAllowance, pBonus):
+        super().__init__('Manager', pName, pPay)
+# alternatively
+#       Staff.__init__(self, 'Manager',pName, pPay);
+# super(ManagementStaff, self).__init__('Manager', pName, pPay)
+        self.allowance = pAllowance
+        self.bonus = pBonus
+
+    def calculatePay(self):
+        basicPay = super().calculatePay()
+        self.pay = basicPay + self.allowance
+        return self.pay
+
+    def calculatePerfBonus(self):
+        prompt = 'Enter performance grade for %s: ' \
+            % (self.name)
+        grade = input(prompt)
+        if (grade == 'A'):
+            self.bonus = 1000
+        else:
+            self.bonus = 0
+        return self.bonus
+
+
+class BasicStaff(Staff):
+    def __init__(self, pName, pPay):
+        super().__init__('Basic', pName, pPay)
+
+#########################################################
+
+
+name1 = Staff('Basic', 'Yvonne', 0)
+name2 = ManagementStaff('Dave', 0, 50, 100)
+name2.calculatePerfBonus()
+name2.calculatePay()
+name3 = BasicStaff('Bob', 0)
+name3.calculatePay()
+
+
+print(name2)
+print(name3)

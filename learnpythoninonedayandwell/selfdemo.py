@@ -14,3 +14,9 @@ class ProgStaff:
 
 peter = ProgStaff(2500)
 john = ProgStaff(2500)
+moo = john
+
+john.printInfo()
+print("moo")
+ProgStaff.printInfo(moo)
+
