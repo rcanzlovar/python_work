@@ -1,8 +1,8 @@
 # python_work
 scratch place for python, sharing between devices
 
-##python2 and 
-##python3 
+## python2 and 
+## python3 
 the cheat sheets for python learn, broken out to one chapter per file
 
 ##learnpythoninonedayandwell
