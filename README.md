@@ -1,11 +1,11 @@
 # python_work
 scratch place for python, sharing between devices
 
-## python2 and 
+## python2 
 ## python3 
 the cheat sheets for python learn, broken out to one chapter per file
 
-##learnpythoninonedayandwell
+## learnpythoninonedayandwell
 directory contains example files created while reading through the book 
 learn Python in One Day and Learn it well
 Python for beginners with hands on project
